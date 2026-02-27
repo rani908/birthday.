@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise ❤️</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+body{
+margin:0;
+font-family:sans-serif;
+background:#0f172a;
+color:white;
+text-align:center;
+}
+
+.container{padding:20px;}
+
+.cake{
+font-size:70px;
+cursor:pointer;
+}
+
+.gift{
+font-size:45px;
+cursor:pointer;
+margin:10px;
+display:inline-block;
+}
+
+.chat{
+background:#111827;
+margin:auto;
+margin-top:20px;
+max-width:360px;
+padding:15px;
+border-radius:15px;
+display:none;
+}
+
+.msg{
+background:#22c55e;
+color:black;
+padding:10px;
+border-radius:10px;
+margin:8px 0;
+text-align:left;
+animation:fade .6s;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎉 Happy Birthday Bandarrr ❤️</h1>
+
+<div class="cake" onclick="startSurprise()">🎂</div>
+
+<div id="gifts" style="display:none">
+<h2>Open Your Gifts 🎁</h2>
+</div>
+
+<div class="chat" id="chat"></div>
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_2b49b5c9ff.mp3">
+</audio>
+
+</div>
+
+<script>
+
+const messages = [
+
+"Happy Birthday bandarrr... 😘🫂",
+
+"Honestly, mujhe long filmy wishes likhna nahi aata, but itna zaroor kehna hai ki tum meri life ka important part ban chuke ho. 😻",
+
+"Tumhare saath baat karna achaa lagta hai, comfortable lagta hai… aur shayad isi wajah se tum special ho. 🤗",
+
+"Life perfect nahi hoti, hum bhi perfect nahi hain, par tumhare saath jo normal si conversations, hasi-mazaak aur understanding hai… wahi mujhe achhi lagti hai. 😌",
+
+"Main bas ye wish karti hoon ki tum life me jo bhi chaho, wo achieve karo. Stress kam ho, khushiyan zyada ho, aur tum hamesha waise hi genuine insaan raho jaise ab ho. 🥰",
+
+"Thank you for being there, for listening, aur meri life ko thoda sa better banane ke liye. 😇",
+
+"Have a really good year ahead. Happy Birthday 🎂😻",
+
+"AND I LOVE U SO MUCH..!! 😘🌷✨"
+
+];
+
+let index=0;
+
+function startSurprise(){
+
+confetti({particleCount:200,spread:120});
+document.getElementById("music").play();
+
+let giftArea=document.getElementById("gifts");
+giftArea.style.display="block";
+
+messages.forEach(()=>{
+let gift=document.createElement("div");
+gift.className="gift";
+gift.innerText="🎁";
+gift.onclick=openGift;
+giftArea.appendChild(gift);
+});
+}
+
+function openGift(){
+
+if(index>=messages.length) return;
+
+confetti({particleCount:120,spread:90});
+
+let chat=document.getElementById("chat");
+chat.style.display="block";
+
+let msg=document.createElement("div");
+msg.className="msg";
+msg.innerText=messages[index];
+
+chat.appendChild(msg);
+
+index++;
+}
+
+</script>
+
+</body>
+</html>
